@@ -1,12 +1,12 @@
-// Build chart
-var svgWidth = 980;
+// Build a chart
+var svgWidth = 960;
 var svgHeight = 620;
 
 var margin = {
-  top: 20,
-  right: 10,
-  bottom: 100,
-  left: 100
+   top: 20,
+   right: 10,
+   bottom: 100,
+   left: 90
 }
 
 var width = svgWidth - margin.left - margin.right;
@@ -14,22 +14,21 @@ var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append SVG group which will hold our chart
 var svg = d3.select("#scatter")
-  .append("svg")
-  .classed("chart", true)
-  .attr("width", svgWidth)
-  .attr("height", svgHeight);
+   .append("svg")
+   .classed("chart", true)
+   .attr("width", svgWidth)
+   .attr("height", svgHeight);
 
-  // Chart group
+// Chart group
 var chartGroup = svg.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
+   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 var chosenX = "poverty";
 var chosenY = "healthcare";
 
 var Transition = "No";
 
-// create X-Axis label
+// Create X-Axis label
 var xLabels = chartGroup.append("g")
    .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
    .attr("class", "aText");
@@ -112,11 +111,11 @@ function scatterbuild(chosenX, chosenY) {
     // Create x and y scale functions
 
     var xLinearScale = d3.scaleLinear()
-       .domain([d3.min(StatesData, d => d[chosenX]) * 0.75, d3.max(StatesData, d => d[chosenX]) * 1.1])
+       .domain([d3.min(StatesData, d => d[chosenX]) * 0.90, d3.max(StatesData, d => d[chosenX]) * 1.10])
        .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-       .domain([d3.min(StatesData, d => d[chosenY]) * 0.75, d3.max(StatesData, d => d[chosenY]) * 1.1])
+       .domain([d3.min(StatesData, d => d[chosenY]) * 0.90, d3.max(StatesData, d => d[chosenY]) * 1.10])
        .range([height, 0]);
 
        // Create Axis functions
@@ -221,17 +220,17 @@ function scatterbuild(chosenX, chosenY) {
     }
 
 
-    // Initialize Tool-tip
+    // Initialize tooltip
 
     var toolTip = d3.tip()
        .attr("class", "d3-tip")
        .offset([-20, 40])
        .html(function(d) {
-          return(`${d["state"]}<br>${chosenX}: ${d[chosenX]}<br>${chosenY}: ${d[chosenY]}`);
+          return(`${d["state"]}<br>${chosenX}: ${d[chosenX]}%<br>${chosenY}: ${d[chosenY]}%`);
 
        });
 
-    // Create Tooltip in the chart
+    // Create tooltip in the chart
 
     chartGroup.call(toolTip);
 
