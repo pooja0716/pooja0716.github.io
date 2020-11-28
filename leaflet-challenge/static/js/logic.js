@@ -13,13 +13,13 @@ d3.json(earthquakeURL, function(data)
 
  // set color of earthquake based on magnitude
 
- function getColor(d)
+ function getColor(m)
  {
-     return d > 5 ? "purple" :
-     d > 4 ? "orange" :
-     d > 3 ? "gold" :
-     d > 2 ? "yellow" :
-     d > 1 ? "greenyellow" :
+     return m > 5 ? "purple" :
+     m > 4 ? "orange" :
+     m > 3 ? "gold" :
+     m > 2 ? "yellow" :
+     m > 1 ? "greenyellow" :
              "red";
  }
  
